@@ -1,1 +1,1 @@
-usage: lint-ts lint --rule NAME WEIGHTS FILE... | lint-ts record FILE | lint-ts chunks FILE
+usage: tn1-lint lint --rule NAME WEIGHTS FILE... | tn1-lint record FILE | tn1-lint chunks FILE | tn1-lint --help
