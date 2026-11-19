@@ -1,5 +1,5 @@
 // The chunks law: on seeded TypeScript programs, the top-level statements
-// tn1-lint reads (ergo.dev/tn1/ts, Statements) are the statements the
+// tn1-lint reads (github.com/cevr/tn1-lint/tn1/ts, Statements) are the statements the
 // TypeScript compiler's own parser (typescript-go, through the pinned
 // typescript package's API) reports: the same count, and each one from
 // its first token (getStart) to its end. A failing seed prints the

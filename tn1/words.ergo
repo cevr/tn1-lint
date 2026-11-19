@@ -1,5 +1,5 @@
 // The record's word rule and its text form, for a host written in Ergo
-// (ergo.dev/tn1/ts). internal/sketch/lint/features states the same in
+// (github.com/cevr/tn1-lint/tn1/ts). internal/sketch/lint/features states the same in
 // Go for Ergo's own parser; the vectors' records hold the two equal.
 
 import strconv

@@ -3,7 +3,7 @@
 // per line and reads one reply per line, so N files cost one process
 // start and one parse of each weights file, not N of each.
 
-import ergo.dev/tn1
+import github.com/cevr/tn1-lint/tn1
 import fs
 import io
 import json

@@ -1,0 +1,8 @@
+{
+  "name": "tn1-lint-ts",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "typescript": "7.1.0-beta"
+  }
+}

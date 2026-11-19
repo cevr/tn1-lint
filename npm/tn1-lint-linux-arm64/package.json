@@ -4,8 +4,8 @@
   "description": "The tn1-lint binary for Linux arm64 (a static Go binary; see @cevr/tn1-lint).",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cevr/ergo.git",
-    "directory": "tools/npm/tn1-lint-linux-arm64"
+    "url": "git+https://github.com/cevr/tn1-lint.git",
+    "directory": "npm/tn1-lint-linux-arm64"
   },
   "os": ["linux"],
   "cpu": ["arm64"],

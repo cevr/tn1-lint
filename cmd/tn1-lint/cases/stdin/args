@@ -1,4 +1,3 @@
-ts/run.ts
 lint
 --rule
 narration

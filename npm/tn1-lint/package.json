@@ -4,8 +4,8 @@
   "description": "TN1's advisory linter for TypeScript: small all-integer networks decide the judgement lints exact rules cannot, beside oxlint, with findings in oxlint's JSON form. Deterministic, local, free.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cevr/ergo.git",
-    "directory": "tools/npm/tn1-lint"
+    "url": "git+https://github.com/cevr/tn1-lint.git",
+    "directory": "npm/tn1-lint"
   },
   "main": "lint.js",
   "exports": {

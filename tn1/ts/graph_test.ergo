@@ -2,7 +2,7 @@
 // knows (which file imports which, how, and how often it uses each name),
 // and the record version 3 items Project must give them.
 
-import ergo.dev/tn1
+import github.com/cevr/tn1-lint/tn1
 import rand
 import strings
 

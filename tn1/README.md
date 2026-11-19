@@ -1,4 +1,4 @@
-# ergo.dev/tn1
+# github.com/cevr/tn1-lint/tn1
 
 TN1, input version 2: a small ternary network over a host-neutral feature record, as an installable module (not std). Every value is an integer, so a finding has the same bits on every host and in every engine.
 
@@ -10,4 +10,4 @@ TN1, input version 2: a small ternary network over a host-neutral feature record
 
 Tests (`ergo test .`): `VectorsAreReproduced` holds the engine to the vectors; the law `PermilleRises` holds the probability table. The record's own guarantees (it survives a reformat, its vectors' records are what the parser makes) are tested on the Go side, in `internal/sketch/lint/features`.
 
-Install: `require ergo.dev/tn1 v…` in the program's `go.mod` with `replace ergo.dev/tn1 => ../../modules/tn1`, as `examples/tn1` does. It uses no Go.
+Use: `require github.com/cevr/tn1-lint v…` in the program's `go.mod`, then `import github.com/cevr/tn1-lint/tn1`, as `cmd/tn1` does inside this module. It uses no Go.

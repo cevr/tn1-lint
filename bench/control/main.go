@@ -1,6 +1,6 @@
-// Command control is the hand Go control of examples/tn1-lint's workload
+// Command control is the hand Go control of cmd/tn1-lint's workload
 // (scripts/opcount -control): the TypeScript host of TN1's record
-// (ergo.dev/tn1/ts) and the record's text form, written as plain Go with
+// (github.com/cevr/tn1-lint/tn1/ts) and the record's text form, written as plain Go with
 // the same algorithm (byte switches, maps for the word sets, one scan,
 // preallocated tokens, each run of three tokens hashed once). It prints
 // the record of FILE, byte for byte what `tn1-lint record FILE` prints;

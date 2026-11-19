@@ -1,0 +1,6 @@
+# The platform packages' binaries are built at pack (npm/pack.sh).
+tn1-lint-*/bin/
+# The wrapper takes the shared launcher at pack.
+tn1-lint/bin/
+tn1-lint/install.js
+*.tgz

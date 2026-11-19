@@ -1,7 +1,7 @@
 // The conformance vectors, checked against this engine. A change to the
 // engine that changes any finding, score, probability or model id breaks
 // this test; then either the change is a bug, or it is a new input version
-// and the vectors are written again (tn1 vectors, examples/tn1) and every
+// and the vectors are written again (tn1 vectors, cmd/tn1) and every
 // other engine follows.
 
 import embed

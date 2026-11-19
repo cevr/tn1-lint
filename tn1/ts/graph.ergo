@@ -6,7 +6,7 @@
 // what an import bound (`a`, or `ns.a` for `* as ns`). Every rule is
 // stated over tokens, as the record's are.
 
-import ergo.dev/tn1
+import github.com/cevr/tn1-lint/tn1
 import maps
 import slices
 import strings

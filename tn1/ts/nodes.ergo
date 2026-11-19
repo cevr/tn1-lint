@@ -5,7 +5,7 @@
 // (a name is "n", a literal "l", a punctuator or a word itself) — the
 // TypeScript host's own reading of "the body's kinds, names erased".
 
-import ergo.dev/tn1
+import github.com/cevr/tn1-lint/tn1
 import slices
 
 // declarer reports a word that makes a statement a type.

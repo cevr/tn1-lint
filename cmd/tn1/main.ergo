@@ -1,4 +1,4 @@
-// tn1 runs TN1 networks (module ergo.dev/tn1) on feature records, writes
+// tn1 runs TN1 networks (module github.com/cevr/tn1-lint/tn1) on feature records, writes
 // the conformance vectors other engines must reproduce, and scores a
 // network against a labelled suite.
 //
@@ -14,13 +14,13 @@
 // A record is made by a host's parser (Ergo's: go run ./scripts/tn1record);
 // this program never reads source.
 
-import ergo.dev/tn1
+import github.com/cevr/tn1-lint/tn1
 import fs
 import io
 import os
 import strconv
 import strings
-import tn1/suite
+import github.com/cevr/tn1-lint/tn1/suite
 
 // Usage is the text of a usage failure.
 let Usage = "usage: tn1 gen control | tn1 gen control-stop | tn1 gen seeded SEED D F K H | tn1 id WEIGHTS | tn1 run WEIGHTS RECORD | tn1 vectors DIR | tn1 score WEIGHTS RECORDS EXPECTED [train|holdout]"

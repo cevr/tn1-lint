@@ -1,8 +1,8 @@
 "use strict";
-// AS8's acceptance check of @cevr/tn1-lint's JS wrapper (tools/npm/tn1-lint/lint.js),
+// AS8's acceptance check of @cevr/tn1-lint's JS wrapper (npm/tn1-lint/lint.js),
 // counted, never timed:
 //
-//   node scripts/npm-sidecar-check.js BINARY N
+//   node npm/sidecar-check.js BINARY N
 //
 // BINARY is a tn1-lint built with `serve`. Over N copies of the TS1
 // conformance vectors' TypeScript source, linted with each of the vectors'
@@ -20,7 +20,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.join(__dirname, "..");
-const vectors = path.join(root, "modules/tn1/testdata/vectors");
+const vectors = path.join(root, "tn1/testdata/vectors");
 
 function fail(message) {
   console.log(`FAIL ${message}`);
@@ -62,7 +62,7 @@ function run(binary, count, mode) {
     // A sidecar that cannot start or keeps exiting: every call fails, none
     // waits, and the starts stay bounded.
     process.env.TN1_LINT_BINARY = binary;
-    const { lintSync, processStarts } = require(path.join(root, "tools/npm/tn1-lint/lint.js"));
+    const { lintSync, processStarts } = require(path.join(root, "npm/tn1-lint/lint.js"));
     for (let i = 0; i < count; i++) {
       try {
         lintSync({ rule: "vector", weights: nets[0], path: files[i].path, text: files[i].text });
@@ -74,7 +74,7 @@ function run(binary, count, mode) {
     starts = processStarts();
   } else {
     process.env.TN1_LINT_BINARY = binary;
-    const { lintSync, processStarts } = require(path.join(root, "tools/npm/tn1-lint/lint.js"));
+    const { lintSync, processStarts } = require(path.join(root, "npm/tn1-lint/lint.js"));
     for (const file of files) {
       for (const net of nets) {
         findings.push(lintSync({ rule: "vector", weights: net, path: file.path, text: file.text }));
@@ -132,7 +132,7 @@ function child(binary, count, mode) {
 async function main() {
   const [binaryArg, countArg] = process.argv.slice(2);
   if (!binaryArg || !countArg) {
-    console.error("usage: node scripts/npm-sidecar-check.js BINARY N");
+    console.error("usage: node npm/sidecar-check.js BINARY N");
     process.exit(2);
   }
   const binary = path.resolve(binaryArg);

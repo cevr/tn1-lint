@@ -5,6 +5,6 @@
 # byte-equal.
 unit byte
 sizes 200000 1600000
-input go cmd/ergo/testdata/tn1lint/gen {n}
+input go bench/gen {n}
 args record {input}
-control cmd/ergo/testdata/tn1lint/control
+control bench/control

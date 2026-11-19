@@ -1,6 +1,6 @@
-// Command gen writes the input of examples/tn1-lint's workload: exactly N
+// Command gen writes the input of cmd/tn1-lint's workload: exactly N
 // bytes of TypeScript, the conformance vectors' TypeScript sources
-// (modules/tn1/testdata/vectors/src/*.ts.txt) in lexical order, repeated
+// (tn1/testdata/vectors/src/*.ts.txt) in lexical order, repeated
 // as often as N needs and cut at N bytes. Run it from the repository root:
 //
 //	gen N
@@ -28,9 +28,9 @@ func main() {
 		fmt.Fprintln(os.Stderr, "gen: N must be a positive count of bytes")
 		os.Exit(2)
 	}
-	files, err := filepath.Glob("modules/tn1/testdata/vectors/src/*.ts.txt")
+	files, err := filepath.Glob("tn1/testdata/vectors/src/*.ts.txt")
 	if err != nil || len(files) == 0 {
-		fmt.Fprintln(os.Stderr, "gen: no TypeScript vectors under modules/tn1/testdata/vectors/src (run from the repository root)")
+		fmt.Fprintln(os.Stderr, "gen: no TypeScript vectors under tn1/testdata/vectors/src (run from the repository root)")
 		os.Exit(1)
 	}
 	var text []byte

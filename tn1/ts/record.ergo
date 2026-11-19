@@ -1,5 +1,5 @@
 // FromSource: the feature record of a TypeScript file, by the record's
-// rules (modules/tn1/record.ergo) stated over tokens:
+// rules (tn1/record.ergo) stated over tokens:
 //
 //   - A line's kind: Code when it holds a byte outside comments that is
 //     not a space; else Blank with no comment byte; else DocComment when a
@@ -20,7 +20,7 @@
 //   - Nodes: the module; each top-level statement (Statements) as a
 //     function, a type, a test or the module's own; each catch block.
 
-import ergo.dev/tn1
+import github.com/cevr/tn1-lint/tn1
 import slices
 import strings
 

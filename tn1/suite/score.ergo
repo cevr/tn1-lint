@@ -3,7 +3,7 @@
 // comment says the rule must flag. The suite is the law of a network:
 // weights that fail it do not ship.
 
-import ergo.dev/tn1
+import github.com/cevr/tn1-lint/tn1
 import strconv
 import strings
 

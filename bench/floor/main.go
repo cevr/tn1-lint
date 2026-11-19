@@ -1,4 +1,4 @@
-// Command floor is the floor of examples/tn1-lint's workload: a lower
+// Command floor is the floor of cmd/tn1-lint's workload: a lower
 // bound on the work the Go runtime allows for a TypeScript feature record,
 // not a record. It does only what any record of the input must: one pass
 // over the bytes through a 256-entry class table, one hash per token, the

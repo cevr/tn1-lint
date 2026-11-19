@@ -1,0 +1,89 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      ERGO_CACHE: ${{ github.workspace }}/../ergo-cache
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Which ergo (the ergo line of ergo.mod)
+        id: ergo
+        run: |
+          v=$(awk '$1 == "ergo" { print $2 }' ergo.mod)
+          [ -n "$v" ] || { echo "ergo.mod has no ergo line"; exit 1; }
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          echo "commit=${v##*-}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.27.4"
+          cache: false
+
+      - name: Cache ergo and its build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/bin/ergo
+            ${{ github.workspace }}/../ergo-cache
+          key: ergo-${{ runner.os }}-${{ steps.ergo.outputs.version }}
+
+      - name: Install ergo at that version
+        env:
+          COMMIT: ${{ steps.ergo.outputs.commit }}
+        run: |
+          if [ ! -x "$HOME/go/bin/ergo" ]; then
+            git clone --quiet --filter=blob:none https://github.com/cevr/ergo.git "$RUNNER_TEMP/ergo"
+            git -C "$RUNNER_TEMP/ergo" checkout --quiet "$COMMIT"
+            (cd "$RUNNER_TEMP/ergo" && go build -o "$HOME/go/bin/ergo" ./cmd/ergo)
+          fi
+          echo "$HOME/go/bin" >> "$GITHUB_PATH"
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Format
+        run: ergo fmt --check .
+
+      - name: Check
+        run: ergo check ./...
+
+      - name: Tests and laws
+        run: |
+          ergo test ./... 2>&1 | tee "$RUNNER_TEMP/test.log"
+          if grep -q -i 'no tests to run' "$RUNNER_TEMP/test.log"; then echo "a package ran no test"; exit 1; fi
+          grep '^skip law' "$RUNNER_TEMP/test.log" | sort > "$RUNNER_TEMP/skips" || true
+          if [ -f expected-skips ]; then grep -v '^#' expected-skips | sort; fi > "$RUNNER_TEMP/expected-skips"
+          diff "$RUNNER_TEMP/expected-skips" "$RUNNER_TEMP/skips"
+
+      - name: Build
+        run: |
+          mkdir -p out
+          ergo build ./cmd/tn1-lint -o out/tn1-lint
+          ergo build ./cmd/tn1 -o out/tn1
+
+      - name: Cases
+        run: |
+          ergo test ./cmd/tn1-lint --cases cmd/tn1-lint/cases
+          ergo test ./cmd/tn1 --cases cmd/tn1/cases
+
+      - name: TypeScript leg
+        run: |
+          (cd ts && bun install --frozen-lockfile)
+          sh ts/check.sh out/tn1-lint
+
+      - name: npm packages
+        run: |
+          sh npm/pack.sh tn1-lint --pack "$PWD/out/npm"
+          sh npm/check.sh tn1-lint "$RUNNER_TEMP/npm-check"
+          node npm/sidecar-check.js out/tn1-lint 50
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: npm-tarballs
+          path: out/npm/*.tgz
+          if-no-files-found: error

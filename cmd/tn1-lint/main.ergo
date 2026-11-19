@@ -2,8 +2,8 @@
 // oxlint (as `oxlint && tn1-lint lint …`) and prints its findings in
 // oxlint's JSON form, so a tool that reads oxlint's report reads these
 // too. It reads source itself, through the TypeScript host of the
-// feature record (ergo.dev/tn1/ts), and decides with the Ergo engine
-// (ergo.dev/tn1); no Ergo toolchain is needed beside the binary.
+// feature record (github.com/cevr/tn1-lint/tn1/ts), and decides with the Ergo engine
+// (github.com/cevr/tn1-lint/tn1); no Ergo toolchain is needed beside the binary.
 //
 //	tn1-lint lint --rule NAME WEIGHTS FILE...   findings, oxlint JSON; exit 0 (advisory)
 //	tn1-lint record FILE                        the feature record
@@ -20,8 +20,8 @@
 // model's id are in its message; an advisory finding never changes the
 // exit code.
 
-import ergo.dev/tn1
-import ergo.dev/tn1/ts
+import github.com/cevr/tn1-lint/tn1
+import github.com/cevr/tn1-lint/tn1/ts
 import fs
 import io
 import json

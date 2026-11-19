@@ -1,7 +1,7 @@
 #!/bin/sh
-# npm-check.sh NAME SCRATCH: a binary package of tools/npm installed the
+# check.sh NAME SCRATCH: a binary package of npm/ installed the
 # ways a user installs it. It builds NAME's binary for this host into its
-# platform package (scripts/npm.sh's steps), packs @cevr/NAME and that
+# platform package (npm/pack.sh's steps), packs @cevr/NAME and that
 # package into SCRATCH (a folder that does not exist yet), and installs
 # the tarballs four ways: bun add, bun add -g, npm install (postinstall
 # places the binary) and npm install --ignore-scripts (the launcher finds
@@ -11,8 +11,8 @@
 # publishes nothing and leaves SCRATCH for the caller to delete.
 # ERGO is the ergo binary (default: ergo on PATH).
 set -eu
-name=${1:?usage: npm-check.sh NAME SCRATCH}
-S=${2:?usage: npm-check.sh NAME SCRATCH}
+name=${1:?usage: check.sh NAME SCRATCH}
+S=${2:?usage: check.sh NAME SCRATCH}
 [ ! -e "$S" ] || { echo "npm-check: $S exists" >&2; exit 2; }
 root=$(cd "$(dirname "$0")/.." && pwd)
 case "$(uname -s)-$(uname -m)" in
@@ -23,7 +23,7 @@ Darwin-arm64) plat=darwin-arm64 ;;
 esac
 mkdir -p "$S/home" "$S/cache" "$S/tgz" "$S/bun-cache" "$S/bun-global" "$S/bun" "$S/npm" "$S/npm-noscripts"
 S=$(cd "$S" && pwd -P)
-sh "$root/scripts/npm.sh" "$name" --pack "$S/tgz" >"$S/pack.log" 2>&1 || { echo "npm-check: npm.sh $name failed (see $S/pack.log)"; exit 1; }
+sh "$root/npm/pack.sh" "$name" --pack "$S/tgz" >"$S/pack.log" 2>&1 || { echo "npm-check: npm.sh $name failed (see $S/pack.log)"; exit 1; }
 export HOME="$S/home" npm_config_cache="$S/cache" npm_config_userconfig="$S/home/.npmrc" npm_config_globalconfig="$S/home/.npmrc-global" npm_config_update_notifier=false npm_config_fund=false npm_config_audit=false BUN_INSTALL_CACHE_DIR="$S/bun-cache"
 : > "$S/home/.npmrc"
 tgz_plat=$(ls "$S"/tgz/cevr-"$name"-"$plat"-*.tgz)
