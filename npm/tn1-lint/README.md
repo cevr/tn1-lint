@@ -19,6 +19,6 @@ lintSync({ rule: "narration", weights: "narration.tn1", path: "src/a.ts", text }
 
 A failed call throws an `Error` with tn1-lint's reason. When the `serve` process cannot start (a fork that fails with `ENOMEM` in a process holding much memory, a binary that cannot run, or one that exits three times), that call and every later one throw at once, with `error.code` set to `"TN1_SIDECAR_DOWN"`: no file of the run can be linted, so a caller fails the run once rather than reporting it per file.
 
-A rule's weights are a `.tn1` file named on the command line; this package ships none yet. A network ships only once it passes its suite and a hold-out. The source, the record's format and the engine are in [cmd/tn1-lint](https://github.com/cevr/ergo/tree/main/cmd/tn1-lint) and [modules/tn1](https://github.com/cevr/ergo/tree/main/modules/tn1).
+A rule's weights are a `.tn1` file named on the command line; this package ships none yet. A network ships only once it passes its suite and a hold-out. The source, the record's format and the engine are in [cevr/tn1-lint](https://github.com/cevr/tn1-lint): `cmd/tn1-lint` and `tn1`.
 
 The package holds no program of its own. Its optional dependency for the platform (`@cevr/tn1-lint-linux-x64`, `@cevr/tn1-lint-linux-arm64` or `@cevr/tn1-lint-darwin-arm64`) holds the static binary, and the install puts it at `bin/tn1-lint`, so `tn1-lint` starts no Node process.
